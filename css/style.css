@@ -1,0 +1,1080 @@
+/* =========================================================
+   AGROCAMPO MARIANO — sistema visual
+   Paleta: azul-marinho profundo + creme + dourado da logo.
+   Fontes: Fraunces (títulos) + Inter (texto).
+   ========================================================= */
+
+:root {
+  --marinho: #0f2038;
+  --marinho-2: #16304f;
+  --marinho-3: #1d3c62;
+  --creme: #f6eddc;
+  --creme-2: #ece0c9;
+  --dourado: #d9a441;
+  --dourado-claro: #f0c868;
+  --verde: #6b8e3e; /* verde da logo, usado como apoio */
+  --tinta: #22180f; /* texto sobre creme */
+  --papel: #f8f3e8; /* texto sobre marinho */
+  --suave-escuro: rgba(248, 243, 232, 0.68);
+  --suave-claro: #6d5c45;
+  --borda-escura: rgba(248, 243, 232, 0.14);
+  --borda-clara: rgba(34, 24, 15, 0.12);
+
+  --fonte-titulo: "Fraunces", Georgia, serif;
+  --fonte-corpo: "Inter", "Segoe UI", system-ui, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--fonte-corpo);
+  background: var(--marinho);
+  color: var(--papel);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: inherit;
+}
+
+.container {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ===== Elementos de texto recorrentes ===== */
+
+.eyebrow {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--dourado);
+  margin-bottom: 18px;
+}
+
+.eyebrow--dourado {
+  color: var(--dourado);
+}
+
+.eyebrow--escuro {
+  color: #a8812a;
+}
+
+/* ===== Botões ===== */
+
+.btn-solido,
+.btn-vazado {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 15px 30px;
+  border: none;
+  border-radius: 999px;
+  font-family: var(--fonte-corpo);
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform 0.15s ease, background 0.15s ease, color 0.15s ease;
+}
+
+.btn-solido {
+  background: var(--creme);
+  color: var(--marinho);
+}
+
+.btn-solido:hover {
+  background: #fff;
+  transform: translateY(-2px);
+}
+
+.btn-solido--escuro {
+  background: var(--marinho);
+  color: var(--creme);
+}
+
+.btn-solido--escuro:hover {
+  background: var(--marinho-2);
+}
+
+.btn-solido--bloco {
+  width: 100%;
+  background: var(--dourado);
+  color: var(--marinho);
+  font-size: 1rem;
+  padding: 17px 30px;
+}
+
+.btn-solido--bloco:hover {
+  background: var(--dourado-claro);
+}
+
+.btn-vazado {
+  background: transparent;
+  color: var(--papel);
+  border: 1.5px solid rgba(248, 243, 232, 0.4);
+}
+
+.btn-vazado:hover {
+  border-color: var(--papel);
+  transform: translateY(-2px);
+}
+
+.btn-vazado--escuro {
+  color: var(--tinta);
+  border-color: rgba(34, 24, 15, 0.3);
+}
+
+.btn-vazado--escuro:hover {
+  border-color: var(--tinta);
+  background: rgba(34, 24, 15, 0.05);
+}
+
+/* =========================================================
+   NAV FLUTUANTE
+   ========================================================= */
+
+.nav-wrap {
+  position: fixed;
+  top: 18px;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  padding: 0 24px;
+  display: flex;
+  justify-content: center;
+}
+
+.nav-pill {
+  width: 100%;
+  max-width: 1180px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 10px 12px 10px 20px;
+  border-radius: 999px;
+  /* vidro fosco: fundo 60% transparente + desfoque de 10px */
+  position: relative;
+  isolation: isolate;
+  background: rgba(20, 12, 6, 0.4);
+  border: 1px solid rgba(248, 243, 232, 0.14);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+}
+
+/* textura de madeira bem sutil (10%) por baixo do vidro */
+.nav-pill::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  background: url("../assets/madeira.jpg") center / cover no-repeat;
+  opacity: 0.1;
+  pointer-events: none;
+}
+
+.nav-links a {
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.45);
+}
+
+.nav-brand {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
+/* A logo.png já vem recortada rente ao desenho (sem margem transparente). */
+.nav-brand__crop {
+  display: flex;
+  align-items: center;
+  height: 44px;
+}
+
+.nav-brand__logo {
+  height: 34px;
+  width: auto;
+  display: block;
+}
+
+.nav-links-wrap {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  list-style: none;
+}
+
+.nav-links a {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--suave-escuro);
+  text-decoration: none;
+  padding-bottom: 3px;
+  border-bottom: 1.5px solid transparent;
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+
+.nav-links a:hover {
+  color: var(--papel);
+  border-bottom-color: var(--dourado);
+}
+
+.nav-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--creme); /* igual ao botão "Agendar banho e tosa" do topo */
+  color: var(--marinho);
+  padding: 11px 12px 11px 22px;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-decoration: none;
+  flex-shrink: 0;
+  transition: background 0.15s ease;
+}
+
+.nav-cta:hover {
+  background: #fff;
+}
+
+.nav-cta__seta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: var(--marinho);
+  color: var(--creme);
+  font-size: 0.9rem;
+  letter-spacing: 0;
+}
+
+/* =========================================================
+   HERO
+   ========================================================= */
+
+.hero-cine {
+  position: relative;
+  min-height: 74vh;
+  display: flex;
+  align-items: center;
+  padding: 140px 24px 70px;
+  overflow: hidden;
+  background: var(--marinho); /* preenche os 20% da esquerda, onde a foto não entra */
+}
+
+/* Foto da fachada fica atrás do texto, mas deslocada pra direita: começa em
+   ~12% da largura (a borda some suave no azul) e o véu escurece só o
+   necessário pra leitura do texto. */
+.hero-cine__fundo {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 12%;
+  background-image: url("../assets/fachada-hd.jpg");
+  background-size: cover;
+  background-position: 0% 55%;
+  filter: brightness(0.9); /* foto 10% mais apagada */
+  -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 14%);
+  mask-image: linear-gradient(90deg, transparent 0%, #000 14%);
+}
+
+.hero-cine__veu {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+      90deg,
+      rgba(15, 32, 56, 1) 0%,
+      rgba(15, 32, 56, 1) 14%,
+      rgba(15, 32, 56, 0.92) 30%,
+      rgba(15, 32, 56, 0.78) 42%,
+      rgba(15, 32, 56, 0.42) 55%,
+      rgba(15, 32, 56, 0.1) 66%,
+      rgba(15, 32, 56, 0) 75%
+    ),
+    radial-gradient(
+      circle at 15% 50%,
+      rgba(217, 164, 65, 0.16) 0%,
+      transparent 55%
+    );
+}
+
+/* No celular o texto ocupa a largura toda: a foto volta pro fundo inteiro,
+   escurecida pelo véu. */
+@media (max-width: 760px) {
+  .hero-cine__fundo {
+    left: 0;
+    background-position: 35% 50%;
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+
+  .hero-cine__veu {
+    background: linear-gradient(
+      180deg,
+      rgba(15, 32, 56, 0.82) 0%,
+      rgba(15, 32, 56, 0.9) 60%,
+      rgba(15, 32, 56, 0.97) 100%
+    );
+  }
+}
+
+.hero-cine__conteudo {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 1180px;
+  margin: 0;
+  padding-left: clamp(0px, calc((100vw - 1180px) / 2), 200px);
+}
+
+.hero-cine__titulo {
+  font-family: var(--fonte-titulo);
+  font-size: clamp(2.6rem, 6.4vw, 5.4rem);
+  font-weight: 700;
+  line-height: 1.04;
+  letter-spacing: -0.02em;
+  color: var(--papel);
+  max-width: 17ch;
+  margin-bottom: 26px;
+}
+
+.destaque-dourado {
+  color: var(--dourado-claro);
+}
+
+.hero-cine__selos {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 26px;
+}
+
+.selo {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  color: var(--suave-escuro);
+}
+
+.selo--destaque {
+  padding: 7px 15px;
+  border: 1px solid rgba(248, 243, 232, 0.28);
+  border-radius: 999px;
+  color: var(--papel);
+}
+
+.selo-ponto {
+  color: var(--dourado);
+}
+
+.hero-cine__lead {
+  font-size: 1.06rem;
+  color: var(--suave-escuro);
+  max-width: 54ch;
+  margin-bottom: 36px;
+}
+
+.hero-cine__acoes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+/* =========================================================
+   NÚMEROS
+   ========================================================= */
+
+/* Escada de cores: cada seção um degrau mais clara que a anterior
+   Números (azul escuro) → Produtos (azul mais claro) → Banho e Tosa (bege)
+   → Veterinário (creme, o tom mais claro). */
+.numeros {
+  background: var(--marinho);
+  padding: 100px 0;
+}
+
+.numeros__titulo {
+  font-family: var(--fonte-titulo);
+  font-size: clamp(2rem, 4.2vw, 3.4rem);
+  font-weight: 600;
+  line-height: 1.1;
+  text-align: center;
+  color: var(--papel);
+  margin-bottom: 70px;
+}
+
+.numeros__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 48px;
+}
+
+.num-card__valor {
+  font-family: var(--fonte-titulo);
+  font-size: clamp(3.6rem, 7vw, 5.6rem);
+  font-weight: 900;
+  line-height: 1;
+  color: var(--dourado-claro);
+  text-shadow: 0 0 36px rgba(240, 200, 104, 0.35);
+  margin-bottom: 14px;
+  font-variant-numeric: tabular-nums; /* número não "pula" de largura na contagem */
+}
+
+.num-card__titulo {
+  font-size: 0.86rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--papel);
+  margin-bottom: 10px;
+}
+
+.num-card__texto {
+  font-size: 0.95rem;
+  color: var(--suave-escuro);
+  max-width: 34ch;
+}
+
+/* =========================================================
+   BLOCOS DE SEÇÃO
+   ========================================================= */
+
+.bloco {
+  padding: 100px 0;
+}
+
+.bloco--escuro {
+  background: var(--marinho-2);
+}
+
+/* Produtos: azul um degrau mais claro que os Números */
+#produtos {
+  background: #2c4a6e;
+}
+
+/* Banho e Tosa: bege, um degrau antes do creme do Veterinário */
+.bloco--creme {
+  background: var(--creme-2);
+  color: var(--tinta);
+}
+
+.bloco__titulo {
+  font-family: var(--fonte-titulo);
+  font-size: clamp(2rem, 4.4vw, 3.4rem);
+  font-weight: 600;
+  line-height: 1.08;
+  letter-spacing: -0.015em;
+  margin-bottom: 14px;
+}
+
+.bloco--escuro .bloco__titulo {
+  color: var(--papel);
+}
+
+.bloco--creme .bloco__titulo {
+  color: var(--tinta);
+}
+
+.bloco__subtitulo {
+  font-size: 1.02rem;
+  max-width: 56ch;
+  margin-bottom: 50px;
+}
+
+.bloco--escuro .bloco__subtitulo {
+  color: var(--suave-escuro);
+}
+
+.bloco--creme .bloco__subtitulo {
+  color: var(--suave-claro);
+}
+
+.bloco__acao {
+  margin-top: 44px;
+}
+
+/* ===== Cards de produto (gerados pelo main.js) ===== */
+
+.produtos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(235px, 1fr));
+  gap: 24px;
+}
+
+.produto-card {
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  background: var(--marinho-3);
+  border: 1px solid var(--borda-escura);
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.produto-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(217, 164, 65, 0.5);
+}
+
+.produto-card__imagem {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(145deg, rgba(248, 243, 232, 0.08), rgba(248, 243, 232, 0.02));
+  color: rgba(248, 243, 232, 0.45);
+  font-size: 0.82rem;
+}
+
+.produto-card__corpo {
+  padding: 20px;
+}
+
+.produto-card__categoria {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--dourado);
+  margin-bottom: 8px;
+}
+
+.produto-card__nome {
+  font-family: var(--fonte-titulo);
+  font-size: 1.12rem;
+  font-weight: 600;
+  color: var(--papel);
+  line-height: 1.25;
+  margin-bottom: 8px;
+}
+
+.produto-card__preco {
+  font-size: 0.88rem;
+  color: var(--suave-escuro);
+}
+
+/* ===== Cards de serviço (gerados pelo main.js) ===== */
+
+.servicos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 22px;
+}
+
+.servico-card {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
+  background: var(--creme); /* mais claro que o fundo bege da seção, pra destacar */
+  border: 1px solid var(--borda-clara);
+  border-radius: 20px;
+  padding: 38px 28px;
+  text-align: center;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.servico-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 16px 40px rgba(34, 24, 15, 0.1);
+}
+
+.servico-card h3 {
+  font-family: var(--fonte-titulo);
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--tinta);
+  margin-bottom: 8px;
+}
+
+.servico-card p {
+  font-size: 0.9rem;
+  color: var(--suave-claro);
+}
+
+/* ===== Rolo de resultados (banho e tosa) ===== */
+
+.resultados {
+  margin-top: 70px;
+}
+
+.resultados__titulo {
+  font-family: var(--fonte-titulo);
+  font-size: clamp(1.4rem, 2.6vw, 2rem);
+  font-weight: 600;
+  color: var(--tinta);
+  max-width: 42ch;
+  margin-bottom: 32px;
+}
+
+.resultados__rolo {
+  display: flex;
+  gap: 28px;
+  overflow-x: auto;
+  padding: 10px 24px 20px;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* Edge legado */
+
+  /* full-bleed: escapa do .container (max-width) e vai de ponta a ponta da tela */
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+}
+
+.resultados__rolo::-webkit-scrollbar {
+  display: none; /* Chrome, Edge, Safari */
+}
+
+.resultado-card {
+  flex: 0 0 280px;
+}
+
+.resultado-card__foto {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  border-radius: 18px;
+  overflow: hidden;
+  /* moldura amadeirada com o mesmo véu azul 40% do rodapé (madeira a 60%) */
+  background:
+    linear-gradient(rgba(15, 32, 56, 0.4), rgba(15, 32, 56, 0.4)),
+    url("../assets/madeira.jpg") center / cover no-repeat,
+    var(--marinho);
+  border: 1px solid var(--borda-escura);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 10px;
+  font-size: 0.8rem;
+  color: rgba(248, 243, 232, 0.45);
+}
+
+.resultado-card__foto img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+/* =========================================================
+   SEÇÃO DIVIDIDA — VETERINÁRIO
+   ========================================================= */
+
+.dividida {
+  display: grid;
+  grid-template-columns: 408px 1fr;
+  gap: 80px;
+  align-items: center;
+  background: var(--creme);
+  padding: 110px max(24px, calc((100vw - 1100px) / 2));
+}
+
+/* Retrato emoldurado: tamanho controlado, não domina a seção */
+.dividida__escuro {
+  position: relative;
+  background: var(--marinho);
+  display: flex;
+  align-items: stretch;
+  overflow: hidden;
+  aspect-ratio: 4 / 5;
+  border-radius: 999px 0 0 999px; /* lado esquerdo em meio círculo, direito reto */
+  outline: 1px solid var(--dourado);
+  outline-offset: 10px;
+  box-shadow: 0 30px 60px -28px rgba(15, 32, 56, 0.55);
+}
+
+.dividida__foto {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 4rem;
+  color: rgba(248, 243, 232, 0.3);
+  overflow: hidden;
+}
+
+.dividida__foto img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.dividida__creme {
+  background: var(--creme);
+  color: var(--tinta);
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.dividida__titulo {
+  font-family: var(--fonte-titulo);
+  font-size: clamp(2.2rem, 3.8vw, 3.5rem);
+  font-weight: 600;
+  line-height: 1.08;
+  letter-spacing: -0.015em;
+  color: var(--tinta);
+  margin-bottom: 26px;
+}
+
+.dividida__texto {
+  font-size: 1rem;
+  color: var(--suave-claro);
+  max-width: 48ch;
+  margin-bottom: 30px;
+}
+
+.dividida__pessoa {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding-left: 18px;
+  border-left: 3px solid var(--dourado);
+  margin-bottom: 22px;
+}
+
+.dividida__nome {
+  font-family: var(--fonte-titulo);
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--tinta);
+}
+
+.dividida__cargo {
+  font-size: 0.92rem;
+  color: var(--suave-claro);
+}
+
+.dividida__exp {
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: #a8812a;
+  text-transform: uppercase;
+  margin-top: 4px;
+}
+
+.dividida__aviso {
+  font-size: 0.86rem;
+  color: var(--suave-claro);
+  max-width: 44ch;
+  margin-bottom: 28px;
+}
+
+.dividida__contatos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+/* =========================================================
+   RODAPÉ
+   ========================================================= */
+
+.rodape {
+  /* madeira a 60% sobre o azul-marinho (véu azul de 40% por cima da foto);
+     o conteúdo fica num painel de vidro por cima */
+  background:
+    linear-gradient(rgba(15, 32, 56, 0.4), rgba(15, 32, 56, 0.4)),
+    url("../assets/madeira.jpg") center / cover no-repeat,
+    var(--marinho);
+  border-top: 1px solid var(--borda-escura);
+  padding: 70px 24px 40px;
+}
+
+/* mesmo efeito da barra do topo: fundo 40% + desfoque 10px + madeira 10% */
+.rodape__vidro {
+  position: relative;
+  isolation: isolate;
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 50px 0 30px;
+  border-radius: 28px;
+  background: rgba(20, 12, 6, 0.4);
+  border: 1px solid rgba(248, 243, 232, 0.14);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+}
+
+.rodape__vidro::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  background: url("../assets/madeira.jpg") center / cover no-repeat;
+  opacity: 0.1;
+  pointer-events: none;
+}
+
+.rodape__grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1.2fr 1.2fr;
+  gap: 40px;
+  padding-bottom: 50px;
+}
+
+.rodape__marca {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: fit-content;
+}
+
+.rodape__logo {
+  height: 45px;
+  width: auto;
+  display: block;
+}
+
+.rodape__tagline {
+  font-family: var(--fonte-corpo);
+  font-weight: 700;
+  font-size: 0.85rem;
+  color: var(--dourado);
+  margin-top: 18px;
+}
+
+.rodape__col-titulo {
+  font-family: var(--fonte-titulo);
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--papel);
+  margin-bottom: 16px;
+}
+
+.rodape__col a,
+.rodape__col p {
+  display: block;
+  font-size: 0.9rem;
+  color: var(--suave-escuro);
+  text-decoration: none;
+  margin-bottom: 9px;
+  transition: color 0.15s ease;
+}
+
+.rodape__col a:hover {
+  color: var(--dourado);
+}
+
+.rodape__base {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding-top: 26px;
+  border-top: 1px solid var(--borda-escura);
+  font-size: 0.82rem;
+  color: rgba(248, 243, 232, 0.45);
+}
+
+.rodape__topo {
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+.rodape__topo:hover {
+  color: var(--dourado);
+}
+
+/* ===== Botão flutuante do WhatsApp ===== */
+
+.whatsapp-flutuante {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  background: #25d366;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.6rem;
+  text-decoration: none;
+  box-shadow: 0 8px 26px rgba(0, 0, 0, 0.35);
+  z-index: 40;
+  transition: transform 0.15s ease;
+}
+
+.whatsapp-flutuante:hover {
+  transform: scale(1.07);
+}
+
+/* =========================================================
+   RESPONSIVO
+   ========================================================= */
+
+@media (max-width: 1000px) {
+  .dividida {
+    grid-template-columns: 1fr;
+    gap: 56px;
+    padding: 80px 32px;
+  }
+
+  .dividida__escuro {
+    width: min(336px, 100%);
+    margin-left: 10px; /* espaço pra moldura dourada não encostar na borda */
+  }
+
+  .rodape__grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 760px) {
+  .nav-links-wrap {
+    display: none;
+  }
+
+  .nav-pill {
+    justify-content: space-between;
+  }
+
+  .hero-cine {
+    min-height: auto;
+    padding: 130px 20px 70px;
+  }
+
+  .bloco,
+  .numeros {
+    padding: 70px 0;
+  }
+
+  .numeros__titulo {
+    margin-bottom: 48px;
+  }
+
+  .numeros__grid {
+    gap: 40px;
+  }
+
+  .dividida {
+    padding: 70px 20px;
+  }
+
+  .rodape__grid {
+    grid-template-columns: 1fr;
+    gap: 34px;
+  }
+
+  .rodape__base {
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 420px) {
+  .nav-cta span:first-child {
+    display: none;
+  }
+
+  .nav-cta {
+    padding: 8px;
+  }
+}
+
+/* ===== ANIMAÇÕES DE ENTRADA ===== */
+
+/* Hero: entra em sequência ao carregar a página */
+@keyframes surgir {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: none; }
+}
+
+@keyframes fundo-respira {
+  from { opacity: 0; transform: scale(1.06); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+.hero-cine__fundo {
+  animation: fundo-respira 1.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.hero-cine__conteudo > * {
+  animation: surgir 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+.hero-cine__conteudo > *:nth-child(1) { animation-delay: 0.15s; }
+.hero-cine__conteudo > *:nth-child(2) { animation-delay: 0.3s; }
+.hero-cine__conteudo > *:nth-child(3) { animation-delay: 0.45s; }
+.hero-cine__conteudo > *:nth-child(4) { animation-delay: 0.6s; }
+.hero-cine__conteudo > *:nth-child(5) { animation-delay: 0.75s; }
+
+/* Rolagem: elementos marcados pelo JS surgem ao entrar na tela.
+   Sem JS nada fica escondido, porque a classe só é aplicada pelo script. */
+.revelar {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
+}
+
+.revelar--suave {
+  transform: none;
+}
+
+.revelar.revelado {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-cine__fundo,
+  .hero-cine__conteudo > * {
+    animation: none;
+  }
+  .revelar {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
