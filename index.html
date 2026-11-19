@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Agrocampo Mariano — Petshop, Banho e Tosa em Tubarão/SC</title>
+  <meta name="description" content="Agrocampo Mariano: mais de 10 anos de agropecuária, também com petshop completo em Tubarão/SC. Produtos selecionados e banho e tosa com agendamento fácil pelo WhatsApp." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700;9..144,900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/chatbot.css" />
+</head>
+<body id="topo">
+
+  <!-- ===== NAV FLUTUANTE ===== -->
+  <header class="nav-wrap">
+    <div class="nav-pill">
+      <a href="#topo" class="nav-brand" aria-label="Voltar ao topo">
+        <span class="nav-brand__crop">
+          <img class="nav-brand__logo" src="assets/logo.png" alt="Agrocampo Mariano" />
+        </span>
+        <span id="marca-nome" class="sr-only">Agrocampo Mariano</span>
+      </a>
+
+      <nav class="nav-links-wrap">
+        <ul class="nav-links">
+          <li><a href="#produtos">Produtos</a></li>
+          <li><a href="#servicos">Banho e Tosa</a></li>
+          <li><a href="#veterinario">Veterinário</a></li>
+          <li><a href="#contato">Contato</a></li>
+        </ul>
+      </nav>
+
+      <a href="#" class="nav-cta" data-whatsapp target="_blank" rel="noopener">
+        <span>AGENDAR</span>
+        <span class="nav-cta__seta" aria-hidden="true">↗</span>
+      </a>
+    </div>
+  </header>
+
+  <!-- ===== HERO CINEMATOGRÁFICO ===== -->
+  <section class="hero-cine">
+    <div class="hero-cine__fundo"></div>
+    <div class="hero-cine__veu"></div>
+
+    <div class="hero-cine__conteudo">
+      <p class="eyebrow">AGROPECUÁRIA &amp; PETSHOP</p>
+
+      <h1 id="hero-titulo" class="hero-cine__titulo">
+        <span class="destaque-dourado">Tradição</span> que vem do campo,<br />
+        e o <span class="destaque-dourado">cuidado</span><br />
+        que o seu<br />
+        pet merece.
+      </h1>
+
+      <div class="hero-cine__selos">
+        <span class="selo selo--destaque">+10 ANOS</span>
+        <span class="selo">TUBARÃO/SC</span>
+        <span class="selo-ponto" aria-hidden="true">•</span>
+        <span class="selo">BANHO E TOSA</span>
+      </div>
+
+      <p class="hero-cine__lead">
+        Há mais de 10 anos somos referência no agronegócio, e agora trazemos essa mesma
+        excelência para o nosso petshop. Encontre produtos selecionados a dedo e garanta o
+        bem-estar do seu melhor amigo com nosso serviço de banho e tosa.
+      </p>
+
+      <div class="hero-cine__acoes">
+        <a href="#" class="btn-solido" data-whatsapp target="_blank" rel="noopener">Agendar banho e tosa</a>
+        <a href="#produtos" class="btn-vazado">Ver produtos</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== NÚMEROS / TRADIÇÃO ===== -->
+  <section class="numeros">
+    <div class="container">
+      <h2 class="numeros__titulo">
+        Do campo para a sua casa,<br />
+        com cuidado de verdade.
+      </h2>
+
+      <div class="numeros__grid">
+        <article class="num-card">
+          <div class="num-card__valor" data-contar="10" data-prefixo="+">+10</div>
+          <h3 class="num-card__titulo">ANOS DE TRADIÇÃO</h3>
+          <p class="num-card__texto">
+            Mais de uma década como referência em agropecuária na região de Tubarão.
+          </p>
+        </article>
+
+        <article class="num-card">
+          <div class="num-card__valor" data-contar="2">2</div>
+          <h3 class="num-card__titulo">MUNDOS, UMA CASA</h3>
+          <p class="num-card__texto">
+            Agropecuária e petshop no mesmo lugar — do campo ao seu melhor amigo.
+          </p>
+        </article>
+
+        <article class="num-card">
+          <div class="num-card__valor" data-contar="10" data-prefixo="+">+10</div>
+          <h3 class="num-card__titulo">ANOS DE VETERINÁRIO</h3>
+          <p class="num-card__texto">
+            Atendimento de confiança com o Dr. Eder Mota Mariano, nosso parceiro.
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PRODUTOS ===== -->
+  <section class="bloco bloco--escuro" id="produtos">
+    <div class="container">
+      <p class="eyebrow eyebrow--dourado">CATÁLOGO</p>
+      <h2 class="bloco__titulo">Tudo que o seu companheiro precisa</h2>
+      <p class="bloco__subtitulo">
+        Ração, brinquedos, higiene e acessórios selecionados com cuidado pra cães e gatos
+      </p>
+      <div class="produtos-grid" id="produtos-grid"></div>
+    </div>
+  </section>
+
+  <!-- ===== BANHO E TOSA ===== -->
+  <section class="bloco bloco--creme" id="servicos">
+    <div class="container">
+      <p class="eyebrow eyebrow--escuro">NOSSOS SERVIÇOS</p>
+      <h2 class="bloco__titulo">Banho e Tosa</h2>
+      <p class="bloco__subtitulo">
+        Seu pet sai cheiroso e bem cuidado — agende em poucos minutos, sem precisar ligar
+      </p>
+      <div class="servicos-grid" id="servicos-grid"></div>
+
+      <div class="resultados">
+        <p class="eyebrow eyebrow--escuro">RESULTADOS</p>
+        <h3 class="resultados__titulo">Cada pet é tratado com o carinho e o cuidado de quem faz parte da família.</h3>
+        <div class="resultados__rolo" id="resultados-rolo"></div>
+      </div>
+
+      <div class="bloco__acao">
+        <a href="#" class="btn-solido btn-solido--escuro" data-whatsapp target="_blank" rel="noopener">Agendar agora</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== VETERINÁRIO (SEÇÃO DIVIDIDA) ===== -->
+  <section class="dividida" id="veterinario">
+    <div class="dividida__escuro">
+      <div class="dividida__foto" id="veterinario-foto">👤</div>
+    </div>
+
+    <div class="dividida__creme">
+      <p class="eyebrow eyebrow--escuro">ATENDIMENTO VETERINÁRIO</p>
+
+      <h2 class="dividida__titulo">
+        Parceiro.<br />
+        Especialista.<br />
+        Confiança.
+      </h2>
+
+      <p class="dividida__texto">
+        Cuidado também na saúde dos animais. O atendimento veterinário da Agrocampo é feito
+        por um profissional com mais de uma década de estrada, que conhece de perto tanto o
+        animal de campo quanto o bicho de estimação.
+      </p>
+
+      <div class="dividida__pessoa">
+        <span class="dividida__nome" id="veterinario-nome"></span>
+        <span class="dividida__cargo" id="veterinario-cargo"></span>
+        <span class="dividida__exp" id="veterinario-experiencia"></span>
+      </div>
+
+      <p class="dividida__aviso">
+        Atendimento marcado direto com o Dr. Eder — esse contato é separado do WhatsApp da loja.
+      </p>
+
+      <div class="dividida__contatos">
+        <a id="veterinario-whatsapp" class="btn-solido btn-solido--escuro" href="#" target="_blank" rel="noopener">Falar no WhatsApp</a>
+        <a id="veterinario-instagram" class="btn-vazado btn-vazado--escuro" href="#" target="_blank" rel="noopener">Ver Instagram</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== RODAPÉ ===== -->
+  <footer class="rodape" id="contato">
+    <div class="rodape__vidro">
+    <div class="container rodape__grid">
+      <div class="rodape__marca">
+        <img class="rodape__logo" src="assets/logo.png" alt="Agrocampo Mariano" />
+        <p class="rodape__tagline">Um novo conceito em Agropecuária!</p>
+      </div>
+
+      <div class="rodape__col">
+        <h4 class="rodape__col-titulo">Navegação</h4>
+        <a href="#produtos">Produtos</a>
+        <a href="#servicos">Banho e Tosa</a>
+        <a href="#veterinario">Veterinário</a>
+      </div>
+
+      <div class="rodape__col">
+        <h4 class="rodape__col-titulo" id="footer-nome">Agrocampo Mariano</h4>
+        <p id="footer-endereco">Endereço em breve</p>
+        <p id="footer-horario">Horário em breve</p>
+      </div>
+
+      <div class="rodape__col">
+        <h4 class="rodape__col-titulo">Contato</h4>
+        <a id="footer-whatsapp" href="#" target="_blank" rel="noopener">WhatsApp</a>
+        <a id="footer-instagram" href="#" target="_blank" rel="noopener">Instagram</a>
+        <a id="footer-email" href="#">Email</a>
+      </div>
+    </div>
+
+    <div class="container rodape__base">
+      <span>© Agrocampo Mariano — Tubarão/SC</span>
+      <a href="#topo" class="rodape__topo">Voltar ao topo ↑</a>
+    </div>
+    </div>
+  </footer>
+
+  <a id="whatsapp-flutuante" class="whatsapp-flutuante" href="#" target="_blank" rel="noopener" aria-label="Falar no WhatsApp">
+    💬
+  </a>
+
+  <script src="js/dados.js"></script>
+  <script src="js/store.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/chatbot.js"></script>
+</body>
+</html>
